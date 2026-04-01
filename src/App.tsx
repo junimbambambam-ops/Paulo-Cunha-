@@ -545,7 +545,7 @@ const Hero = () => {
             initial={{ opacity: 0, x: HERO_SLIDES[current].align === 'right' ? 50 : -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="max-w-5xl"
+            className="max-w-6xl"
           >
             <div className="min-h-[300px]">
               <motion.p 
@@ -622,7 +622,7 @@ const About = () => {
   return (
     <section id="sobre" className="section-spacing overflow-hidden">
       <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 items-center">
           <div className="relative aspect-[4/5] md:aspect-square lg:aspect-[4/5] group">
             <div className="absolute inset-0 border-2 border-brand-gold translate-x-6 translate-y-6 z-0" />
             <div className="relative z-10 w-full h-full overflow-hidden bg-brand-ice/20">
