@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Inter", sans-serif;
+  
+  --color-brand-bg: #F9F8F6;
+  --color-brand-ice: #E3E9F0;
+  --color-brand-text: #1A1A1A;
+  --color-brand-accent: #8E8E8E;
+  --color-brand-gold: #C5A059;
+  --color-brand-pastel-beige: #F2EBE4;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-bg text-brand-text font-sans antialiased selection:bg-brand-gold/20 selection:text-brand-text overflow-x-hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-light tracking-tight;
+  }
+}
+
+.section-spacing {
+  @apply py-16;
+}
+
+.container-custom {
+  @apply max-w-7xl mx-auto px-6 md:px-12;
+}
+
+.btn-minimal {
+  @apply px-8 py-3 border border-brand-text text-brand-text uppercase tracking-widest text-[10px] font-bold hover:bg-brand-text hover:text-white transition-all duration-500 relative overflow-hidden;
+}
+
+.btn-gold {
+  @apply px-8 py-4 bg-brand-gold text-white uppercase tracking-[0.2em] text-[10px] font-bold hover:bg-brand-text transition-all duration-500 shadow-lg;
+}
+
+.glass-light {
+  @apply bg-white/40 backdrop-blur-xl border border-white/40 shadow-xl;
+}
+
+.gold-glow-hover {
+  @apply transition-all duration-500;
+}
+
+.gold-glow-hover:hover {
+  @apply border-brand-gold/50 shadow-[0_0_30px_rgba(197,160,89,0.2)] scale-[1.02];
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll {
+  animation: scroll 40s linear infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+.parallax-nav {
+  @apply transition-all duration-700 ease-in-out;
+}
+
+.parallax-nav.scrolled {
+  @apply bg-white/80 backdrop-blur-md py-4 shadow-sm;
+}
+
+.parallax-nav:not(.scrolled) {
+  @apply bg-transparent py-10;
+}
+
+.menu-link {
+  @apply relative text-[10px] uppercase tracking-[0.3em] font-bold transition-colors duration-300;
+}
+
+.menu-link::after {
+  content: '';
+  @apply absolute bottom-[-4px] left-0 w-0 h-[1px] bg-brand-gold transition-all duration-300;
+}
+
+.menu-link:hover::after {
+  @apply w-full;
+}
+
+.menu-link:hover {
+  @apply text-brand-gold;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
