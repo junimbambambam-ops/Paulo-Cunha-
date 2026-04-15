@@ -24,7 +24,8 @@ import {
   Newspaper,
   Crown,
   Bird,
-  PawPrint
+  PawPrint,
+  Search
 } from 'lucide-react';
 
 // --- Types ---
@@ -182,21 +183,10 @@ const SERVICES: Service[] = [
 
 const RESULTS: CaseResult[] = [
   {
-    id: 1,
-    title: "Absolvições em 2025",
-    stat: "85%",
-    description: "Taxa de sucesso em teses de mérito no Tribunal do Júri.",
-    comments: [
-      { sender: "Ricardo M.", text: "Absolvido! Obrigado Dr. Paulo, você salvou minha vida.", time: "10:24" },
-      { sender: "Família Silva", text: "Justiça foi feita. Gratidão eterna pelo trabalho no júri.", time: "14:15" },
-      { sender: "André L.", text: "Estratégia impecável. O melhor criminalista que já vi.", time: "09:45" }
-    ]
-  },
-  {
     id: 2,
     title: "Habeas Corpus",
-    stat: "+120",
-    description: "Ordens concedidas para revogação de prisões ilegais.",
+    stat: "Ordens Concedidas",
+    description: "Atuação técnica para revogação de prisões ilegais.",
     comments: [
       { sender: "Juliana S.", text: "Meu irmão está em casa! O HC foi aceito em tempo recorde.", time: "11:30" },
       { sender: "Marcos T.", text: "Liberdade restabelecida. Obrigado pela agilidade Dr.", time: "16:20" },
@@ -204,21 +194,10 @@ const RESULTS: CaseResult[] = [
     ]
   },
   {
-    id: 3,
-    title: "Experiência",
-    stat: "15",
-    description: "Anos dedicados exclusivamente à advocacia criminal.",
-    comments: [
-      { sender: "Dr. Roberto", text: "Referência na área criminal. 15 anos de muita técnica.", time: "13:40" },
-      { sender: "OAB/MG", text: "Profissional exemplar com vasta experiência prática.", time: "15:10" },
-      { sender: "Carlos A.", text: "Sente-se a segurança de quem conhece cada detalhe da lei.", time: "10:05" }
-    ]
-  },
-  {
     id: 4,
-    title: "Casos de Impacto",
-    stat: "500+",
-    description: "Processos acompanhados com foco em garantias.",
+    title: "Repercussão Nacional",
+    stat: "",
+    description: "Processos acompanhados com foco em garantias e direitos fundamentais.",
     comments: [
       { sender: "Sérgio V.", text: "Caso complexo resolvido com maestria. Recomendo!", time: "17:30" },
       { sender: "Ana Paula", text: "Dedicação total ao processo. Transparência nota 10.", time: "12:25" },
@@ -228,8 +207,8 @@ const RESULTS: CaseResult[] = [
   {
     id: 5,
     title: "Sustentações Orais",
-    stat: "300+",
-    description: "Atuação técnica perante Tribunais de Justiça e Superiores.",
+    stat: "Atuação em Tribunais",
+    description: "Atuação técnica perante Tribunais de Justiça e Superiores em todo o país.",
     comments: [
       { sender: "Tribunal", text: "Sustentação oral de altíssimo nível técnico.", time: "11:15" },
       { sender: "Fernando K.", text: "Emocionante ver a defesa no tribunal. Vitória merecida.", time: "16:40" },
@@ -239,32 +218,20 @@ const RESULTS: CaseResult[] = [
   {
     id: 6,
     title: "Clientes Satisfeitos",
-    stat: "1000+",
-    description: "Pessoas que tiveram seus direitos preservados.",
+    stat: "300 satisfeitos",
+    description: "Pessoas que tiveram seus direitos preservados com excelência.",
     comments: [
       { sender: "João P.", text: "Atendimento humano e muito profissional. Nota mil.", time: "10:55" },
       { sender: "Carla G.", text: "Sempre disponível para tirar dúvidas. Me senti segura.", time: "15:35" },
       { sender: "Renato S.", text: "O melhor investimento que fiz para minha defesa.", time: "13:10" }
     ]
-  },
-  {
-    id: 7,
-    title: "Comarcas Atendidas",
-    stat: "50+",
-    description: "Presença em diversas jurisdições do território nacional.",
-    comments: [
-      { sender: "Interior MG", text: "Mesmo longe, o Dr. Paulo esteve presente em tudo.", time: "14:20" },
-      { sender: "Brasília DF", text: "Atuação impecável nos tribunais superiores.", time: "11:45" },
-      { sender: "São Paulo SP", text: "Referência que atravessa fronteiras estaduais.", time: "16:05" }
-    ]
   }
 ];
 
 const ABOUT_IMAGES = [
-  "https://japevuckvzjehuajbudw.supabase.co/storage/v1/object/public/meu%20Site/eu.png",
-  "https://japevuckvzjehuajbudw.supabase.co/storage/v1/object/public/meu%20Site/eu02.png",
-  "https://japevuckvzjehuajbudw.supabase.co/storage/v1/object/public/meu%20Site/eu03.jpeg",
-  "https://japevuckvzjehuajbudw.supabase.co/storage/v1/object/public/meu%20Site/eu1.png"
+  "https://japevuckvzjehuajbudw.supabase.co/storage/v1/object/public/meu%20Site/pp.jpeg",
+  "https://japevuckvzjehuajbudw.supabase.co/storage/v1/object/public/meu%20Site/ppp.jpeg",
+  "https://japevuckvzjehuajbudw.supabase.co/storage/v1/object/public/meu%20Site/pppp.jpeg"
 ];
 
 const QUALIFICATIONS = [
@@ -641,10 +608,10 @@ const About = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/40 to-transparent" />
             </div>
             
-            <div className="absolute -bottom-8 -right-8 bg-brand-gold p-8 z-20 hidden md:block">
+            <div className="absolute -bottom-4 -right-4 md:-bottom-8 md:-right-8 bg-brand-gold p-4 md:p-8 z-20">
               <div className="text-white text-center">
-                <p className="text-4xl font-serif font-bold">15+</p>
-                <p className="text-[10px] uppercase tracking-widest font-bold">Anos de Experiência</p>
+                <p className="text-2xl md:text-4xl font-serif font-bold">8</p>
+                <p className="text-[8px] md:text-[10px] uppercase tracking-widest font-bold">Anos de Atuação</p>
               </div>
             </div>
           </div>
@@ -727,7 +694,7 @@ const Specialties = () => {
               onClick={() => setSelectedService(service)}
             >
               <div className="glass-light h-full flex flex-col overflow-hidden gold-glow-hover transition-all duration-300">
-                <div className="relative h-72 md:h-80 overflow-hidden">
+                <div className="relative aspect-[4/5] md:aspect-auto md:h-80 overflow-hidden">
                   {service.video ? (
                     <video 
                       src={service.video} 
@@ -735,6 +702,7 @@ const Specialties = () => {
                       muted 
                       loop 
                       playsInline
+                      preload="metadata"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                   ) : (
@@ -797,7 +765,7 @@ const Specialties = () => {
                 <X className="w-6 h-6" />
               </button>
 
-              <div className="w-full md:w-[60%] h-[40%] md:h-full relative">
+              <div className="w-full md:w-[60%] aspect-video md:aspect-auto md:h-full relative">
                 {selectedService.video ? (
                   <video 
                     src={selectedService.video} 
@@ -805,6 +773,7 @@ const Specialties = () => {
                     muted 
                     loop 
                     playsInline
+                    preload="metadata"
                     className="w-full h-full object-cover"
                   />
                 ) : (
@@ -956,10 +925,10 @@ const WinnersGallery = () => {
                 {/* Light Effect Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-brand-gold/5 to-transparent -translate-x-full group-hover/card:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
                 
-                <div className={`text-5xl font-serif font-bold text-brand-gold mb-4 transition-transform duration-500 ${activeId === result.id ? 'scale-110' : ''}`}>
-                  {result.stat}
+                <div className={`text-3xl md:text-4xl font-serif font-bold text-brand-gold mb-4 transition-transform duration-500 leading-tight ${activeId === result.id ? 'scale-110' : ''}`}>
+                  {result.title}
                 </div>
-                <h3 className="text-xs text-brand-text font-bold mb-4 uppercase tracking-widest">{result.title}</h3>
+                <h3 className="text-[12px] text-brand-text font-bold mb-4 uppercase tracking-[0.2em]">{result.stat}</h3>
                 <p className="text-brand-text/50 text-xs leading-relaxed max-w-[200px] mx-auto">
                   {result.description}
                 </p>
@@ -1068,6 +1037,7 @@ const StrategicBlog = () => {
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [likedPosts, setLikedPosts] = useState<number[]>([]);
   const [showBalloons, setShowBalloons] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const toggleLike = (id: number) => {
     setLikedPosts(prev => 
@@ -1075,61 +1045,93 @@ const StrategicBlog = () => {
     );
   };
 
+  const filteredPosts = BLOG_POSTS.filter(post => 
+    post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    post.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    post.excerpt.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <section id="blog" className="section-spacing relative">
       <div className="container-custom">
-        <div className="flex items-end justify-between mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
             <span className="text-brand-accent text-[10px] uppercase tracking-[0.4em] mb-4 block font-bold">
               Blog Estratégico
             </span>
             <h2 className="text-4xl md:text-6xl">Direitos e <span className="font-bold">Justiça</span></h2>
           </div>
-          <button 
-            onClick={() => setShowBalloons(true)}
-            className="hidden md:flex items-center gap-2 text-brand-gold font-bold uppercase tracking-widest text-[10px] hover:text-brand-text transition-colors"
-          >
-            Ver todos <ArrowRight className="w-4 h-4" />
-          </button>
+          
+          <div className="flex flex-col md:flex-row items-center gap-6 w-full md:w-auto">
+            <div className="relative w-full md:w-80 group">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-gold/50 group-focus-within:text-brand-gold transition-colors" />
+              <input 
+                type="text"
+                placeholder="Buscar artigos..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full bg-white/40 backdrop-blur-sm border border-brand-gold/20 rounded-full py-3 pl-12 pr-6 text-xs text-brand-text focus:outline-none focus:border-brand-gold/50 transition-all placeholder:text-brand-text/30"
+              />
+            </div>
+            
+            <button 
+              onClick={() => setShowBalloons(true)}
+              className="hidden md:flex items-center gap-2 text-brand-gold font-bold uppercase tracking-widest text-[10px] hover:text-brand-text transition-colors whitespace-nowrap"
+            >
+              Ver todos <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {BLOG_POSTS.map((post) => (
-            <article 
-              key={post.id} 
-              className="group cursor-pointer h-full flex flex-col"
-              onClick={() => setSelectedPost(post)}
-            >
-              <div className="relative aspect-[16/9] mb-8 overflow-hidden bg-brand-ice/20">
-                <img 
-                  src={post.image} 
-                  alt={post.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute top-6 left-6">
-                  <span className="px-4 py-1 bg-white/90 backdrop-blur-sm text-brand-text text-[9px] font-bold uppercase tracking-widest">
-                    {post.category}
-                  </span>
+        {filteredPosts.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {filteredPosts.map((post) => (
+              <article 
+                key={post.id} 
+                className="group cursor-pointer h-full flex flex-col"
+                onClick={() => setSelectedPost(post)}
+              >
+                <div className="relative aspect-[16/9] mb-8 overflow-hidden bg-brand-ice/20">
+                  <img 
+                    src={post.image} 
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute top-6 left-6">
+                    <span className="px-4 py-1 bg-white/90 backdrop-blur-sm text-brand-text text-[9px] font-bold uppercase tracking-widest">
+                      {post.category}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center gap-4 text-brand-accent text-[10px] mb-4 font-bold uppercase tracking-widest">
-                <span>{post.date}</span>
-                <span className="w-1 h-1 bg-brand-gold rounded-full" />
-                <span>5 min leitura</span>
-              </div>
-              <h3 className="text-2xl text-brand-text font-serif group-hover:text-brand-gold transition-colors mb-4">
-                {post.title}
-              </h3>
-              <p className="text-brand-text/60 text-sm leading-relaxed mb-8 line-clamp-3">
-                {post.excerpt}
-              </p>
-              <div className="mt-auto flex items-center gap-2 text-brand-gold text-[10px] font-bold uppercase tracking-widest">
-                Ler Artigo <ArrowRight className="w-3 h-3" />
-              </div>
-            </article>
-          ))}
-        </div>
+                <div className="flex items-center gap-4 text-brand-accent text-[10px] mb-4 font-bold uppercase tracking-widest">
+                  <span>{post.date}</span>
+                  <span className="w-1 h-1 bg-brand-gold rounded-full" />
+                  <span>5 min leitura</span>
+                </div>
+                <h3 className="text-2xl text-brand-text font-serif group-hover:text-brand-gold transition-colors mb-4">
+                  {post.title}
+                </h3>
+                <p className="text-brand-text/60 text-sm leading-relaxed mb-8 line-clamp-3">
+                  {post.excerpt}
+                </p>
+                <div className="mt-auto flex items-center gap-2 text-brand-gold text-[10px] font-bold uppercase tracking-widest">
+                  Ler Artigo <ArrowRight className="w-3 h-3" />
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20 bg-white/20 backdrop-blur-sm rounded-3xl border border-dashed border-brand-gold/30">
+            <p className="text-brand-text/50 font-serif text-xl italic">Nenhum artigo encontrado para "{searchTerm}"</p>
+            <button 
+              onClick={() => setSearchTerm("")}
+              className="mt-4 text-brand-gold text-[10px] font-bold uppercase tracking-widest hover:underline"
+            >
+              Limpar busca
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Info Balloons Overlay */}
@@ -1403,6 +1405,7 @@ const ChatWidget = () => {
                   loop 
                   muted 
                   playsInline
+                  preload="metadata"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
                 <div className="absolute bottom-3 left-4 z-20">
