@@ -231,7 +231,8 @@ const RESULTS: CaseResult[] = [
 const ABOUT_IMAGES = [
   "https://japevuckvzjehuajbudw.supabase.co/storage/v1/object/public/meu%20Site/pp.jpeg",
   "https://japevuckvzjehuajbudw.supabase.co/storage/v1/object/public/meu%20Site/ppp.jpeg",
-  "https://japevuckvzjehuajbudw.supabase.co/storage/v1/object/public/meu%20Site/pppp.jpeg"
+  "https://japevuckvzjehuajbudw.supabase.co/storage/v1/object/public/meu%20Site/pppp.jpeg",
+  "https://japevuckvzjehuajbudw.supabase.co/storage/v1/object/public/meu%20Site/ppppppppppp.jpeg"
 ];
 
 const QUALIFICATIONS = [
@@ -309,7 +310,7 @@ const LoadingScreen = () => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(false), 3500);
+    const timer = setTimeout(() => setIsVisible(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -377,7 +378,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 parallax-nav ${scrolled ? 'scrolled' : ''}`}>
+    <nav className={`fixed top-0 left-0 w-full z-[70] parallax-nav ${scrolled ? 'scrolled' : ''}`}>
       <div className="container-custom flex items-center justify-between">
         <div className="flex flex-col">
           <span className={`font-serif text-2xl tracking-widest uppercase transition-colors duration-500 ${scrolled ? 'text-brand-text' : 'text-white'}`}>
@@ -402,9 +403,10 @@ const Navbar = () => {
 
         <button 
           onClick={() => setIsOpen(!isOpen)}
-          className={`md:hidden ${scrolled ? 'text-brand-text' : 'text-white'}`}
+          className={`md:hidden p-2 rounded-lg transition-colors ${scrolled ? 'text-brand-text hover:bg-brand-gold/10' : 'text-white hover:bg-white/10'}`}
+          aria-label="Menu"
         >
-          {isOpen ? <X /> : <Menu />}
+          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
@@ -509,14 +511,14 @@ const Hero = () => {
         >
           <motion.div
             key={`text-${current}`}
-            initial={{ opacity: 0, x: HERO_SLIDES[current].align === 'right' ? 50 : -50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
             className="max-w-6xl"
           >
-            <div className="min-h-[300px]">
+            <div className="min-h-[220px] md:min-h-[300px] flex flex-col justify-center">
               <motion.p 
-                className={`text-white text-4xl md:text-5xl lg:text-6xl font-sans leading-[1.0] font-light tracking-tight ${HERO_SLIDES[current].align === 'right' ? 'text-right' : 'text-left'}`}
+                className={`text-white text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-sans leading-[1.2] font-light tracking-tight ${HERO_SLIDES[current].align === 'right' ? 'text-right' : 'text-left'}`}
                 initial="hidden"
                 animate="visible"
                 variants={{
@@ -711,6 +713,7 @@ const Specialties = () => {
                       alt={service.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       referrerPolicy="no-referrer"
+                      loading="lazy"
                     />
                   )}
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500" />
@@ -928,7 +931,9 @@ const WinnersGallery = () => {
                 <div className={`text-3xl md:text-4xl font-serif font-bold text-brand-gold mb-4 transition-transform duration-500 leading-tight ${activeId === result.id ? 'scale-110' : ''}`}>
                   {result.title}
                 </div>
-                <h3 className="text-[12px] text-brand-text font-bold mb-4 uppercase tracking-[0.2em]">{result.stat}</h3>
+                {result.stat && (
+                  <h3 className="text-[12px] text-brand-text font-bold mb-4 uppercase tracking-[0.2em]">{result.stat}</h3>
+                )}
                 <p className="text-brand-text/50 text-xs leading-relaxed max-w-[200px] mx-auto">
                   {result.description}
                 </p>
@@ -1097,6 +1102,7 @@ const StrategicBlog = () => {
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
                   />
                   <div className="absolute top-6 left-6">
                     <span className="px-4 py-1 bg-white/90 backdrop-blur-sm text-brand-text text-[9px] font-bold uppercase tracking-widest">
@@ -1560,7 +1566,8 @@ const ParticleBackground = () => {
 
     const init = () => {
       particles = [];
-      const numberOfParticles = (canvas.width * canvas.height) / 15000;
+      const density = window.innerWidth < 768 ? 25000 : 15000;
+      const numberOfParticles = (canvas.width * canvas.height) / density;
       for (let i = 0; i < numberOfParticles; i++) {
         particles.push(new Particle());
       }
